@@ -59,6 +59,9 @@ openclaw
 qview
 # Oracle SQLDeveloper
 oracle-sqldeveloper
+# usb flasher
+ventoy-bin
+webstorm
 
 [remove]
 # Omarchy defaults or other packages that should not be present on this machine.
