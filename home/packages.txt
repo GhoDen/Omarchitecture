@@ -34,6 +34,8 @@ virt-viewer
 dmidecode
 # Markdown Preview
 yarn
+# Trying to fix broken audio
+pavucontrol
 
 [aur]
 # Password Manager
