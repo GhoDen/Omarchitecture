@@ -3,6 +3,16 @@
 
 -- Keyboard layout and options.
 -- See https://wiki.hypr.land/Configuring/Basics/Variables/#input
+hl.config({
+  input = {
+    -- F24 is mapped to Compose in this custom XKB keymap.
+    kb_file = os.getenv("HOME") .. "/.config/hypr/us-compose-f24.xkb",
+    -- The keymap already defines the desired key symbols; do not apply
+    -- Omarchy's compose:caps option on top of it.
+    kb_options = "",
+  },
+})
+
 -- hl.config({
 --   input = {
 --     -- Use multiple keyboard layouts and switch between them with Left Alt + Right Alt.

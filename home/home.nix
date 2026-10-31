@@ -56,6 +56,7 @@ in
   # Hyprland Config
   home.file.".config/hypr/looknfeel.lua".source = ../dotfiles/hypr/looknfeel.lua;
   home.file.".config/hypr/input.lua".source = ../dotfiles/hypr/input.lua;
+  home.file.".config/hypr/us-compose-f24.xkb".source = ../dotfiles/hypr/us-compose-f24.xkb;
   home.file.".config/hypr/bindings.lua".source = ../dotfiles/hypr/bindings.lua;
   # NeoVim Config
   home.file.".config/nvim/init.lua".source = ../dotfiles/nvim/init.lua;

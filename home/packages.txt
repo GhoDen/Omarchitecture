@@ -36,6 +36,7 @@ dmidecode
 yarn
 # Trying to fix broken audio
 pavucontrol
+audacity
 
 [aur]
 # Password Manager
