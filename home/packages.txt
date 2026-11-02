@@ -37,6 +37,7 @@ yarn
 # Trying to fix broken audio
 pavucontrol
 audacity
+minecraft-launcher
 
 [aur]
 # Password Manager
