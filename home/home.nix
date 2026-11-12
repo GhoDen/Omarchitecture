@@ -1,5 +1,12 @@
-{ pkgs, lib, inputs, user, ... }:
+{ config, pkgs, lib, inputs, user, repoDir, ... }:
 let
+  # Omarchy rewrites some of the configs it ships (theme changes, migrations,
+  # `omarchy refresh`). home.file normally links into the read-only Nix store,
+  # which makes those writes fail with "Permission denied". Point the files
+  # Omarchy edits at the working tree instead, so its changes land in
+  # `git diff` rather than being lost on the next switch.
+  liveDotfile = path: config.lib.file.mkOutOfStoreSymlink "${repoDir}/dotfiles/${path}";
+
   rawLines = lib.splitString "\n" (builtins.readFile ./packages.txt);
 
   collected = lib.foldl' (acc: line:
@@ -41,8 +48,8 @@ in
 
   # Starship Config
   home.file.".config/starship.toml".source = ../dotfiles/starship/starship.toml;
-  # Kitty Config
-  home.file.".config/kitty/kitty.conf".source = ../dotfiles/kitty/kitty.conf;
+  # Kitty Config (Omarchy migrations append to it)
+  home.file.".config/kitty/kitty.conf".source = liveDotfile "kitty/kitty.conf";
   # Fish Config
   home.file.".config/fish/config.fish".source = ../dotfiles/fish/config.fish;
   # Fastfetch Config
@@ -53,11 +60,11 @@ in
   home.file.".config/omarchy/hooks/theme-set.d/qutebrowser_theme_hook".source = ../dotfiles/qutebrowser/qutebrowser_theme_hook;
   # Biopass Config
   home.file.".config/com.ticklab.biopass/config.yaml".source = ../dotfiles/biopass/config.yaml;
-  # Hyprland Config
-  home.file.".config/hypr/looknfeel.lua".source = ../dotfiles/hypr/looknfeel.lua;
-  home.file.".config/hypr/input.lua".source = ../dotfiles/hypr/input.lua;
+  # Hyprland Config (Omarchy migrations and theme switches rewrite these)
+  home.file.".config/hypr/looknfeel.lua".source = liveDotfile "hypr/looknfeel.lua";
+  home.file.".config/hypr/input.lua".source = liveDotfile "hypr/input.lua";
+  home.file.".config/hypr/bindings.lua".source = liveDotfile "hypr/bindings.lua";
   home.file.".config/hypr/us-compose-f24.xkb".source = ../dotfiles/hypr/us-compose-f24.xkb;
-  home.file.".config/hypr/bindings.lua".source = ../dotfiles/hypr/bindings.lua;
   # NeoVim Config
   home.file.".config/nvim/init.lua".source = ../dotfiles/nvim/init.lua;
   home.file.".config/nvim/lua/config/custom.lua".source = ../dotfiles/nvim/lua/config/custom.lua;

@@ -40,10 +40,14 @@
     let
       system = "x86_64-linux";
       user   = "denver";
+      # Absolute path to this checkout. Omarchy rewrites some of the configs
+      # tracked here, so Home Manager links those out of the working tree
+      # instead of the read-only Nix store. Update this if the repo moves.
+      repoDir = "/home/${user}/git/GhoDen/OmarchyRice";
     in {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs { inherit system; };
-      extraSpecialArgs = { inherit inputs user; };
+      extraSpecialArgs = { inherit inputs user repoDir; };
       modules = [ ./home.nix ];
     };
   };

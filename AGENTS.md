@@ -4,7 +4,7 @@
 
 - This is a personal Omarchy desktop configuration, not an application with a build or test suite.
 - `home/packages.txt` is the package source of truth. Its sections map to install mechanisms: `[pacman]` and `[aur]` use Omarchy package commands; `[remove]` is an explicit package denylist applied by `scripts/install.sh`; `[nix]` resolves top-level attributes from nixpkgs; `[nix-flake]` resolves flake inputs declared in `home/flake.nix`.
-- Home Manager reads `home/packages.txt` at Nix evaluation time, and `home/home.nix` maps the tracked dotfiles into `~/.config/`.
+- Home Manager reads `home/packages.txt` at Nix evaluation time, and `home/home.nix` maps the tracked dotfiles into `~/.config/`. Most are read-only Nix-store symlinks; the configs Omarchy itself rewrites (`hypr/looknfeel.lua`, `hypr/input.lua`, `hypr/bindings.lua`, `kitty/kitty.conf`) are linked from the working tree via `repoDir` in `home/flake.nix`, so Omarchy migrations can write to them and the edits show up as a `git diff`.
 
 ## Package Changes
 

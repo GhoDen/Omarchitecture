@@ -38,6 +38,7 @@ yarn
 pavucontrol
 audacity
 minecraft-launcher
+bitwarden
 
 [aur]
 # Password Manager
@@ -66,6 +67,7 @@ oracle-sqldeveloper
 # usb flasher
 ventoy-bin
 webstorm
+curseforge
 
 [remove]
 # Omarchy defaults or other packages that should not be present on this machine.

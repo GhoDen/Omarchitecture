@@ -30,6 +30,8 @@ that a stale entry doesn't quietly linger on the system after you remove it.
 │   ├── home.nix        # home-manager config; reads packages.txt at eval time
 │   └── packages.txt    # THE manifest — see below
 ├── dotfiles/            # Configurations linked into ~/.config by Home Manager
+│                        #   (Omarchy-rewritten ones link to the working tree,
+│                        #    not the read-only Nix store)
 └── scripts/
     ├── install.sh      # Full setup and synchronization
     ├── uninstall.sh    # Remove repository-managed system state
